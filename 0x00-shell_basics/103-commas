@@ -1,2 +1,2 @@
 #!/bin/bash
-ls -a -p -v tr '\n' ','
+ls -a -p ls | grep '^\.\.'; ls | grep '^\.'; ls | grep -v '^\.'
