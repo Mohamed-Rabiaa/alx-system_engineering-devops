@@ -1,0 +1,7 @@
+#!/bin/bash
+acrostic=""
+while read -r line; do
+    acrostic+="${line:0:1}"
+done < "${1:-/dev/stdin}"
+
+echo "$acrostic"
