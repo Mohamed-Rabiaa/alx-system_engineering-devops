@@ -1,2 +1,2 @@
 #!/bin/bash
-ls | -nl | grep '^' {1..100..2} | ls 
+paste -d, - - | cut -d, -f1  
