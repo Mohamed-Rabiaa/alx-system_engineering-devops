@@ -2,7 +2,7 @@
 # displays:
 #+ The content of the current directory In a list format
 #+ Where only the part of the name after the first dash is displayed
-ls > list
-for i in $(cat list); do
-    echo "$i" | cut -d '-' -f 2-
+for i in *; do
+    file=$(echo "$i" | cut -d '-' -f -2)
+    echo "$file"
 done
