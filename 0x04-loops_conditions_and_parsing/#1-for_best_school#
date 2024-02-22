@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # This script is displaying "Best School" 10 times
-# shellcheck disable=SC2034
-for i in {1..10}; do
+my_string = "Best School"
+for ((i=0; i<${#my_string}; i++))
     echo "Best School"
 done
