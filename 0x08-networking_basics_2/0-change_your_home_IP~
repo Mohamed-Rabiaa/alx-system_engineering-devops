@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# configures an Ubuntu server with the below requirements.
+#+ localhost resolves to 127.0.0.2
+#+ facebook.com resolves to 8.8.8.8.
+sed -i 's/^127\.0\.0\.1[[:space:]]*localhost$/127.0.0.2 localhost/' /etc/hosts
