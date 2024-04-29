@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+sudo apt-get update
+sudo apt-get -y install --no-install-recommends software-properties-common
+sudo add-apt-repository -y ppa:vbernat/haproxy-2.0
+sudo apt-get -y install haproxy=2.0.\*
+
+if ! sudo grep -q "backend web-backend" /etc/haproxy/haproxy.cfg; then
+    echo -e "backend web-backend\n\tbalance roundrobin\n\tserver web-01 52.90.0.3:80 check\n\tserver web-02 54.210.51.202:80 check" >> /etc/haproxy/haproxy.cfg
+    fi
+
+sudo systemctl restart haproxy
