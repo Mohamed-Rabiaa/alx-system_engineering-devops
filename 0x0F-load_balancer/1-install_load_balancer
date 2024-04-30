@@ -12,4 +12,9 @@ fi
 if ! sudo grep -q "frontend http" /etc/haproxy/haproxy.cfg; then
     echo -e "frontend http\n\tbind *:80\n\tmode http\n\tdefault_backend web-backend"  >> /etc/haproxy/haproxy.cfg
 fi
-sudo systemctl restart haproxy
+
+if ! sudo grep -q "ENABLED=1" /etc/default/haproxy; then
+    echo "ENABLED=1" >> /etc/default/haproxy
+fi
+
+sudo service haproxy restart
