@@ -12,7 +12,7 @@ display () {
 	    #shellcheck disable=SC2086
 	    echo The subdomain $subdomain is a $record record and points to $destination
 	done
-    else
+    elif [[ $1 && $2 ]]; then
 	subdomain="$2"
 	record=$(dig "$subdomain".mohamed-rabiaa.tech | grep -A1 'ANSWER SECTION:' | awk '{print $4}')
 	destination=$(dig "$subdomain".mohamed-rabiaa.tech | grep -A1 'ANSWER SECTION:' | awk '{print $5}')
@@ -23,7 +23,7 @@ display () {
 if [[ $1 && ! $2 ]]; then
     #shellcheck disable=SC2086 
     display $1
-else
+elif [[ $1 && $2 ]]; then
     #shellcheck disable=SC2086 
     display $1 $2
 fi
