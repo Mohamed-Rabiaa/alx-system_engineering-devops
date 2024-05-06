@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 # Making the fix short and sweet
 sed -i 's/8080/80/g' /etc/nginx/sites-enabled/default
-pkill -l nginx
+pkill -1 nginx
