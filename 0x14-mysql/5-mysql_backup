@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Generates a MySQL dump of all databases and creates a compressed archive out of it
+sudo mysqldump -uroot -p"$1" --all-databases | sudo tee backup.sql
+date=$(date +%d-%m-%Y)
+tar -czf "$date".tar.gz backup.sql
