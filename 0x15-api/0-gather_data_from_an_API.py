@@ -3,8 +3,8 @@
 about an employee TODO list progress using his ID """
 
 
-import sys
 import requests
+import sys
 
 
 if __name__ == "__main__":
