@@ -3,8 +3,8 @@
 about an employee TODO list progress using his ID """
 
 
-import sys
 import requests
+import sys
 
 
 if __name__ == "__main__":
@@ -14,23 +14,15 @@ if __name__ == "__main__":
 
     employee = employee_res.json()
 
-    employee_name = employee.get('name')
+    employee_name = employee.get('username')
 
     params = {'userId': employee_id}
     todos_res = requests.get('https://jsonplaceholder.typicode.com/todos',
                              params=params)
-    done_tasks = todos_res.json()
-    completed_tasks = []
-    for task in done_tasks:
-        if task.get('completed'):
-            completed_tasks.append(task.get('title'))
+    total_tasks = todos_res.json()
 
-    number_of_done_tasks = len(completed_tasks)
-    total_number_of_tasks = len(done_tasks)
-
-    print('Employee {} is done with tasks({}/{})'
-          .format(employee_name,number_of_done_tasks,
-                  total_number_of_tasks))
-
-    for task in completed_tasks:
-        print(task)
+    with open('{}.csv'.format(employee_id), 'w') as csv_file:
+        for task in total_tasks:
+            csv_file.write('"{}","{}","{}","{}"\n'.format(
+                employee_id, employee_name, task.get('completed'),
+                task.get('title')))
