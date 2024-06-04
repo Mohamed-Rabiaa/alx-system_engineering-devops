@@ -11,10 +11,11 @@ def number_of_subscribers(subreddit):
     """
     url = 'https://www.reddit.com/r/{}/about.json'.format(subreddit)
     headers = {'user_agent': 'my_app'}
-    try:
-        res = requests.get(url, headers=headers, allow_redirects=False)
+    res = requests.get(url, headers=headers, allow_redirects=False)
+    if res.status_code == 200:
         subreddit = res.json()
-        number_of_subscribers = subreddit['data']['subscribers']
-    except Exception as e:
+        number_of_subscribers = subreddit.get('data').get('subscribers')
+        return number_of_subscribers
+    else:
         return 0
-    return number_of_subscribers
+    
