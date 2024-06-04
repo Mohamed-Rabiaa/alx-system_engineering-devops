@@ -10,8 +10,9 @@ def number_of_subscribers(subreddit):
     (not active users, total subscribers) for a given subreddit
     """
     url = 'https://www.reddit.com/r/{}/about.json'.format(subreddit)
+    headers = {'user_agent': 'my_app'}
     try:
-        res = requests.get(url)
+        res = requests.get(url, headers=headers, allow_redirects=False)
         subreddit = res.json()
         number_of_subscribers = subreddit['data']['subscribers']
     except Exception as e:
