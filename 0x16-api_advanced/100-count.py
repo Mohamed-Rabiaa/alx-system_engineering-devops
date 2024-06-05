@@ -1,9 +1,17 @@
-import requests
+#!/usr/bin/python3
+""" Contains the count_words function """
+
 from collections import Counter
 import re
+import requests
 
 
 def count_words(subreddit, word_list, after=None, counter=None):
+    """
+    queries the Reddit API, parses the title of all hot articles,
+    and prints a sorted count of given keywords
+    (case-insensitive, delimited by spaces
+    """
     if counter is None:
         counter = Counter()
 
