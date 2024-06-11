@@ -1,0 +1,18 @@
+# adding another service for Gunicorn to handle 
+# Nginx will proxy requests to the route
+# /airbnb-dynamic/number_odd_or_even/(any integer) the process listening on port 5001
+server {
+    listen 80;
+    server_name _;
+
+    location /airbnb-onepage/ {
+        include proxy_params;
+        proxy_pass http://0.0.0.0:5000;
+    }
+   
+   location ~ ^/airbnb-dynamic/number_odd_or_even/(\d+)$ {
+        rewrite ^/airbnb-dynamic/number_odd_or_even/(\d+)$ /number_odd_or_even/$1 break;
+        include proxy_params;
+        proxy_pass http://0.0.0.0:5001;
+        }
+}
